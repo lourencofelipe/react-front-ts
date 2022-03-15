@@ -1,10 +1,20 @@
 import type { NextPage } from 'next'
 
+import { useState } from 'react';
+
 import Head from 'next/head'
+
+import Image from 'next/image'
+
+import banner from '../../public/images/banner.jpg'
+
+import logo from '../../public/images/logo.svg'
+
+import tile1 from '../../public/images/tile-1.jpg'
 
 import styled from 'styled-components';
 
-import { Main, TopBanner, NavBar, Title, PageButton, BottomBanner } from '@Components/index'
+import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input } from '@Components/index'
 
 const LogoPosition = styled.div`
   width: 100%;
@@ -13,6 +23,27 @@ const LogoPosition = styled.div`
   display: flex;
   justify-content: start;
 
+
+  /* Smartphone - landscape */ 
+  @media screen and (max-width: 480px) {
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    background-color: black;
+    justify-content: center;
+  }
+
+  /* Tablet - portrait */ 
+  @media screen and (min-width: 480px) and (max-width: 768px) {
+    width: 50%;
+  }
+
+  /* Tablet - landscape */ 
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    width: 50%;
+  }
+
 `
 
 const PageButtonPosition = styled.div`
@@ -20,10 +51,54 @@ const PageButtonPosition = styled.div`
 
   display: flex;
   justify-content: space-around;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
 `
 
+const ImageTopPosition = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 90vh;
+  overflow: hidden;
+  z-index: -1;
+
+`
+
+const ImageBottomPosition = styled.div`
+  padding-right: 20px;
+
+  display: flex;
+  justify-content: center;
+`
+
+const TasksPosition = styled.div`
+  width: 50%; 
+  height: 68%;
+  padding-left: 20px;
+
+  display: flex;
+  flex-direction: column;
+`
+
+const InputPosition = styled.div`
+  background-color: #ededed;
+  width: 50%;
+  border-radius: 4px;
+  padding: 19px 16px 19px 16px;
+  
+  display: flex;
+  justify-content: space-between;
+
+`
 
 const Home: NextPage = () => {
+  const [task, setTask] = useState<string[]>(['']);
+  const addTask = () => setTask([...task, '']);
+
   return (
     <>
       <Head>
@@ -34,9 +109,12 @@ const Home: NextPage = () => {
 
       <Main>
         <TopBanner>
+          <ImageTopPosition>
+            <Image src={banner} layout="fill" objectFit="cover" quality={100} alt="Banner" />
+          </ImageTopPosition>
           <NavBar>
             <LogoPosition>
-              <Title>Logo</Title>
+              <Image src={logo} quality={100} alt="Logo" />
             </LogoPosition>
             <PageButtonPosition>
               <PageButton href="https://google.com">PAGE ONE</PageButton>
@@ -44,9 +122,20 @@ const Home: NextPage = () => {
               <PageButton href="https://google.com">PAGE THREE</PageButton>
             </PageButtonPosition>
           </NavBar>
+          
         </TopBanner>
-        
+
         <BottomBanner>
+          <ImageBottomPosition>
+            <Image src={tile1} quality={100} alt="Category"/>
+          </ImageBottomPosition>
+
+          <TasksPosition>
+            <Title>My Tasks</Title>
+            <InputPosition>
+              <Input placeholder="Add a task"></Input>
+            </InputPosition>
+          </TasksPosition>
         
         </BottomBanner>
       </Main>

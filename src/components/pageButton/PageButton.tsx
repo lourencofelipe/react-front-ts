@@ -4,6 +4,7 @@ const PageButtonStyled = styled.a`
 
     font-family: roboto;
     font-weight: 400;
+    text-decoration: none;
     color: white;
 
     > a:hover, > a:active, > a:focus {

@@ -2,8 +2,11 @@ import styled from 'styled-components';
 
 export const BottomBanner = styled.div`
     width: 100vw;
-    height: 55vh;
+    height: 100vh;
 
-    background-color: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
 `
