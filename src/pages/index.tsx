@@ -1,20 +1,20 @@
 import type { NextPage } from 'next'
 
-import { useState } from 'react';
+import { useState } from 'react'
 
 import Head from 'next/head'
 
 import Image from 'next/image'
 
-import banner from '../../public/images/banner.jpg'
+import banner from '@Images/banner.jpg'
 
-import logo from '../../public/images/logo.svg'
+import logo from '@Images/logo.svg'
 
-import tile1 from '../../public/images/tile-1.jpg'
+import tile1 from '@Images/tile-1.jpg'
 
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input, Button } from '@Components/index'
+import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input, Button } from '@Components'
 
 const LogoPosition = styled.div`
   width: 100%;
@@ -114,7 +114,7 @@ const InputPosition = styled.div`
 
 const ButtonTaskStyled = styled(Button)`
   padding: 9px 20px;
-  background-color: #b3b3db;
+  background-color: #48a8c0;
   border-radius: 4px;
   font-family: roboto;
   font-weight: 400;
@@ -125,12 +125,18 @@ const ButtonTaskStyled = styled(Button)`
 `
 
 const Home: NextPage = () => {
-  const [tasks, setTask] = useState<string[]>(['']);
+  const [tasks, setTask] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleOnChange = (e: any) => setInputValue(e.target.value);
-  const addTask = () => setTask([...tasks, inputValue]);
-  //const removeTask = () => setTask([...tasks], ['']);
+  const addTask = () => {
+    setTask([...tasks, inputValue]);
+    setInputValue('');
+  }
+  const removeTask = (e: any) => {
+    const newTasks = tasks.filter(x => x !== e.target.getAttribute('data-task'))
+    setTask(newTasks)
+  };
 
   return (
     <>
@@ -166,14 +172,17 @@ const Home: NextPage = () => {
           <TasksPosition>
             <Title>My Tasks</Title>
             <div>
-                {tasks.map(task => ( 
-                  <h2 key={task}>{ task }</h2>
+                {tasks.map((task, i) => ( 
+                  <div key={task + i} style={{ display: 'flex' }}>
+                    <h2>{ task }</h2>
+                    <ButtonTaskStyled type="button" data-task={task} onClick={removeTask}>Remove</ButtonTaskStyled>
+                  </div>
                   )
                 )}
               </div>
             <InputPosition>
               <Input placeholder="Add a task" value={inputValue} onChange={handleOnChange}></Input>
-              <ButtonTaskStyled onClick={addTask}>Add</ButtonTaskStyled>
+              <ButtonTaskStyled type="button" onClick={addTask}>Add</ButtonTaskStyled>
             </InputPosition>
           </TasksPosition>
         
