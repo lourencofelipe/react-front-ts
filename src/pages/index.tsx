@@ -14,7 +14,7 @@ import tile1 from '../../public/images/tile-1.jpg'
 
 import styled from 'styled-components';
 
-import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input } from '@Components/index'
+import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input, Button } from '@Components/index'
 
 const LogoPosition = styled.div`
   width: 100%;
@@ -73,6 +73,10 @@ const ImageBottomPosition = styled.div`
 
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 480px) {
+    padding: 35px 20px 0px 20px;
+  }
 `
 
 const TasksPosition = styled.div`
@@ -82,22 +86,51 @@ const TasksPosition = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    padding: 0px;
+
+  }
+
 `
 
 const InputPosition = styled.div`
   background-color: #ededed;
   width: 50%;
   border-radius: 4px;
+  border: none;
   padding: 19px 16px 19px 16px;
-  
+
   display: flex;
   justify-content: space-between;
 
+  @media screen and (max-width: 480px) {
+    width: 81%;
+    margin-left: 20px;
+  }
+
+`
+
+const ButtonTaskStyled = styled(Button)`
+  padding: 9px 20px;
+  background-color: #b3b3db;
+  border-radius: 4px;
+  font-family: roboto;
+  font-weight: 400;
+  font-size: 21px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
 `
 
 const Home: NextPage = () => {
-  const [task, setTask] = useState<string[]>(['']);
-  const addTask = () => setTask([...task, '']);
+  const [tasks, setTask] = useState<string[]>(['']);
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const handleOnChange = (e: any) => setInputValue(e.target.value);
+  const addTask = () => setTask([...tasks, inputValue]);
+  //const removeTask = () => setTask([...tasks], ['']);
 
   return (
     <>
@@ -132,8 +165,15 @@ const Home: NextPage = () => {
 
           <TasksPosition>
             <Title>My Tasks</Title>
+            <div>
+                {tasks.map(task => ( 
+                  <h2 key={task}>{ task }</h2>
+                  )
+                )}
+              </div>
             <InputPosition>
-              <Input placeholder="Add a task"></Input>
+              <Input placeholder="Add a task" value={inputValue} onChange={handleOnChange}></Input>
+              <ButtonTaskStyled onClick={addTask}>Add</ButtonTaskStyled>
             </InputPosition>
           </TasksPosition>
         
