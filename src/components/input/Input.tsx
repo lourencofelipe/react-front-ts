@@ -19,9 +19,10 @@ const InputStyled = styled.input`
 type InputProps = {
     onChange?: (value: any) => void;
     value?: string; 
-    placeholder: string;
+    placeholder?: string;
+    type?: 'radio' | 'checkbox';
 }
 
-export const Input = ({value, onChange, placeholder }: InputProps ) => (
-    <InputStyled placeholder={placeholder} value={value} onChange={onChange}></InputStyled>
+export const Input = ({value, onChange, placeholder, type }: InputProps ) => (
+    <InputStyled type={type} placeholder={placeholder} value={value} onChange={onChange}></InputStyled>
 )

@@ -1,5 +1,6 @@
 export * from './button'
 export * from './pageButton'
+export * from './paragraph'
 export * from './bottomPanel'
 export * from './input'
 export * from './main'

@@ -10,11 +10,15 @@ import banner from '@Images/banner.jpg'
 
 import logo from '@Images/logo.svg'
 
+import checkboxOff from '@Images/checkbox-off.svg'
+
+import trash from '@Images/trash.svg'
+
 import tile1 from '@Images/tile-1.jpg'
 
 import styled from 'styled-components'
 
-import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input, Button } from '@Components'
+import { Main, TopBanner, NavBar, PageButton, BottomBanner, Title, Input, Button, Paragraph } from '@Components'
 
 const LogoPosition = styled.div`
   width: 100%;
@@ -95,6 +99,45 @@ const TasksPosition = styled.div`
 
 `
 
+const TaskItem = styled.div`
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    margin-left: 20px;
+  }
+`
+const BannerTopItems = styled.div`
+
+  display: flex;
+  flex-direction: column;
+  
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    margin-left: 25px;
+    margin-top: 55px;
+  }
+`
+
+const TaskName = styled(Paragraph)`
+  font-weight: 400;
+  font-size: 20px;
+  width: 38%;
+  padding-left: 15px;
+ 
+
+  display: flex;
+  align-items: start;
+  
+  @media screen and (max-width: 480px) {
+    margin-left: 10px;
+    width: 70%;
+  }
+`
+
 const InputPosition = styled.div`
   background-color: #ededed;
   width: 50%;
@@ -124,6 +167,17 @@ const ButtonTaskStyled = styled(Button)`
   cursor: pointer;
 `
 
+const ButtonRemoveStyled = styled(Button)`
+  
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`
+
+const Checkbox = styled(Input)`
+  
+`
+
 const Home: NextPage = () => {
   const [tasks, setTask] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
@@ -132,11 +186,15 @@ const Home: NextPage = () => {
   const addTask = () => {
     setTask([...tasks, inputValue]);
     setInputValue('');
+
   }
+
   const removeTask = (e: any) => {
     const newTasks = tasks.filter(x => x !== e.target.getAttribute('data-task'))
+    console.log(newTasks)
     setTask(newTasks)
   };
+
 
   return (
     <>
@@ -161,7 +219,14 @@ const Home: NextPage = () => {
               <PageButton href="https://google.com">PAGE THREE</PageButton>
             </PageButtonPosition>
           </NavBar>
-          
+          <BannerTopItems>
+            <Title>Fog Test</Title>
+            <Paragraph>Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit, 
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            </Paragraph>
+          </BannerTopItems>
+         
         </TopBanner>
 
         <BottomBanner>
@@ -171,18 +236,21 @@ const Home: NextPage = () => {
 
           <TasksPosition>
             <Title>My Tasks</Title>
-            <div>
+            <TaskItem>
                 {tasks.map((task, i) => ( 
-                  <div key={task + i} style={{ display: 'flex' }}>
-                    <h2>{ task }</h2>
-                    <ButtonTaskStyled type="button" data-task={task} onClick={removeTask}>Remove</ButtonTaskStyled>
+                  <div key={task + i} style={{ display: 'flex'}}>
+                    <Image src={checkboxOff} quality={100} alt="check"/>
+                    <TaskName>{ task }</TaskName>
+                    <ButtonRemoveStyled type="button" data-task={task} onClick={removeTask}>
+                      <Image src={trash} quality={100} alt="trash"/>
+                    </ButtonRemoveStyled>
                   </div>
                   )
                 )}
-              </div>
+              </TaskItem>
             <InputPosition>
               <Input placeholder="Add a task" value={inputValue} onChange={handleOnChange}></Input>
-              <ButtonTaskStyled type="button" onClick={addTask}>Add</ButtonTaskStyled>
+              <ButtonTaskStyled name="addButton" type="button" onClick={addTask}>Add</ButtonTaskStyled>
             </InputPosition>
           </TasksPosition>
         
