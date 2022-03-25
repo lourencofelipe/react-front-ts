@@ -178,6 +178,24 @@ const Checkbox = styled(Input)`
   
 `
 
+const ButtonLabel = styled(Button)`
+  
+  background: rgb(26 0 0 / 28%);
+  padding: 9px 28px 9px 28px;
+  border-radius: 30px;
+  white-space: nowrap;
+  
+  
+  font-family: roboto;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  
+  color: #ffffff;
+  border: solid 3px #ffffff;
+  cursor: pointer;
+`
+
 const Home: NextPage = () => {
   const [tasks, setTask] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
@@ -225,6 +243,9 @@ const Home: NextPage = () => {
               consectetur adipiscing elit, 
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
             </Paragraph>
+            <div>
+              <ButtonLabel>BUTTON LABEL</ButtonLabel>
+            </div>
           </BannerTopItems>
          
         </TopBanner>
