@@ -157,7 +157,7 @@ const BannerTopPosition = styled.div`
 const TaskName = styled(Paragraph)`
   font-weight: 400;
   font-size: 20px;
-  width: 38%;
+  width: 90%;
   padding-left: 15px;
   color: black;
 
