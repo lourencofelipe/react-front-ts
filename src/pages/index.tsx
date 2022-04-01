@@ -233,6 +233,7 @@ const TextBottomLeft = styled.div`
   left: 16px;
   margin-left: 10px;
   margin-bottom: 5px;
+  width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -242,8 +243,8 @@ const TextBottomLeft = styled.div`
     width: 75%;
   }
 
-  @media screen and(min-width: 768px) and (max-width: 1200px){
-    width: 75%;
+  @media screen and(min-width: 768px) {
+    width: 80%;
   }
 `
 

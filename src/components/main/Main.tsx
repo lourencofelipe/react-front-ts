@@ -5,7 +5,6 @@ export const Main = styled.div`
     min-height: 100vh;
     margin: 0 auto;
 
-
     display: flex;
     flex-direction: column;
     

@@ -5,7 +5,6 @@ const TitleStyled = styled.h1`
     font-weight: 500;
     font-size: 38px;
     color: #ffffff;
-    
 `
 
 type TitleProps = {
