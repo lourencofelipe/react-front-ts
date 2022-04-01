@@ -103,6 +103,10 @@ const TitleTaskStyled = styled.h1`
   font-family: roboto;
   font-weight: 400;
   font-size: 36px;
+
+  @media screen and (max-width: 480px){
+    margin-left: 20px;
+  }
 `
 
 const TaskItem = styled.div`
@@ -232,6 +236,10 @@ const TextBottomLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
+  @media screen and (max-width: 480px) {
+    margin-left: 25px;
+  }
 `
 
 const ButtonTopRight = styled.div`
@@ -256,6 +264,10 @@ const ButtonCategory = styled(Button)`
   color: #ffffff;
   border: none;
   cursor: pointer;
+
+  @media screen and (max-width: 480px) {
+    margin-top: 35px;
+  }
 `
 
 const Home: NextPage = () => {
@@ -318,7 +330,7 @@ const Home: NextPage = () => {
           <ImageBottomPosition>
             <Image src={tile1} quality={100} alt="Category" />
             <ButtonTopRight>
-            <ButtonCategory>Category</ButtonCategory>
+              <ButtonCategory>Category</ButtonCategory>
             </ButtonTopRight>
             <TextBottomLeft>
               <Title style={{fontSize: '24px', marginBottom: '0px'}}>Fog Test</Title>
