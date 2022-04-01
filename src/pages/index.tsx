@@ -238,7 +238,12 @@ const TextBottomLeft = styled.div`
   justify-content: flex-start;
 
   @media screen and (max-width: 480px) {
-    margin-left: 25px;
+    padding-left: 10px;
+    width: 75%;
+  }
+
+  @media screen and(min-width: 768px) and (max-width: 1200px){
+    width: 75%;
   }
 `
 
@@ -334,7 +339,7 @@ const Home: NextPage = () => {
             </ButtonTopRight>
             <TextBottomLeft>
               <Title style={{fontSize: '24px', marginBottom: '0px'}}>Fog Test</Title>
-              <Paragraph style={{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Incididunt ut labore et dolore magna</Paragraph>
+              <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Incididunt ut labore et dolore magna.</Paragraph>
             </TextBottomLeft>
           </ImageBottomPosition>
 
