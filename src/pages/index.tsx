@@ -74,7 +74,7 @@ const ImageTopPosition = styled.div`
 
 const ImageBottomPosition = styled.div`
   padding-right: 20px;
-
+  position: relative;
   display: flex;
   justify-content: center;
 
@@ -94,13 +94,19 @@ const TasksPosition = styled.div`
   @media screen and (max-width: 480px) {
     width: 100%;
     padding: 0px;
-
   }
 
 `
 
+const TitleTaskStyled = styled.h1`
+  color: black;
+  font-family: roboto;
+  font-weight: 400;
+  font-size: 36px;
+`
+
 const TaskItem = styled.div`
-  width: 50%;
+  width: 70%;
 
   display: flex;
   flex-direction: column;
@@ -114,12 +120,34 @@ const BannerTopItems = styled.div`
 
   display: flex;
   flex-direction: column;
+  margin-left: 25px;
+  margin-top: 55px;
   
   @media screen and (max-width: 480px) {
     width: 90%;
-    margin-left: 25px;
-    margin-top: 55px;
+    align-items: start;
   }
+
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
+`
+
+const BannerTopPosition = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    @media screen and (min-width: 768px) {
+      width: 33%;
+      margin-top: 100px;
+      align-items: center;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 960px) {
+      width: 50%;
+      margin-top: 100px;
+      align-items: center;
+    }
 `
 
 const TaskName = styled(Paragraph)`
@@ -127,7 +155,7 @@ const TaskName = styled(Paragraph)`
   font-size: 20px;
   width: 38%;
   padding-left: 15px;
- 
+  color: black;
 
   display: flex;
   align-items: start;
@@ -140,7 +168,7 @@ const TaskName = styled(Paragraph)`
 
 const InputPosition = styled.div`
   background-color: #ededed;
-  width: 50%;
+  width: 70%;
   border-radius: 4px;
   border: none;
   padding: 19px 16px 19px 16px;
@@ -185,7 +213,6 @@ const ButtonLabel = styled(Button)`
   border-radius: 30px;
   white-space: nowrap;
   
-  
   font-family: roboto;
   text-align: center;
   font-weight: 500;
@@ -193,6 +220,41 @@ const ButtonLabel = styled(Button)`
   
   color: #ffffff;
   border: solid 3px #ffffff;
+  cursor: pointer;
+`
+
+const TextBottomLeft = styled.div`
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+`
+
+const ButtonTopRight = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  margin-right: 15px;
+  margin-top: 5px;
+`
+
+const ButtonCategory = styled(Button)`
+  background: rgb(27 0 0 / 28%);
+  padding: 9px 28px 9px 28px;
+  border-radius: 30px;
+  white-space: nowrap;
+  
+  font-family: roboto;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  
+  color: #ffffff;
+  border: none;
   cursor: pointer;
 `
 
@@ -238,6 +300,7 @@ const Home: NextPage = () => {
             </PageButtonPosition>
           </NavBar>
           <BannerTopItems>
+            <BannerTopPosition>
             <Title>Fog Test</Title>
             <Paragraph>Lorem ipsum dolor sit amet,
               consectetur adipiscing elit, 
@@ -246,17 +309,25 @@ const Home: NextPage = () => {
             <div>
               <ButtonLabel>BUTTON LABEL</ButtonLabel>
             </div>
+            </BannerTopPosition>
           </BannerTopItems>
          
         </TopBanner>
 
         <BottomBanner>
           <ImageBottomPosition>
-            <Image src={tile1} quality={100} alt="Category"/>
+            <Image src={tile1} quality={100} alt="Category" />
+            <ButtonTopRight>
+            <ButtonCategory>Category</ButtonCategory>
+            </ButtonTopRight>
+            <TextBottomLeft>
+              <Title style={{fontSize: '24px', marginBottom: '0px'}}>Fog Test</Title>
+              <Paragraph style={{}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Incididunt ut labore et dolore magna</Paragraph>
+            </TextBottomLeft>
           </ImageBottomPosition>
 
           <TasksPosition>
-            <Title>My Tasks</Title>
+            <TitleTaskStyled>My Tasks</TitleTaskStyled>
             <TaskItem>
                 {tasks.map((task, i) => ( 
                   <div key={task + i} style={{ display: 'flex'}}>
