@@ -10,8 +10,6 @@ import banner from '@Images/banner.jpg'
 
 import logo from '@Images/logo.svg'
 
-import checkboxOff from '@Images/checkbox-off.svg'
-
 import trash from '@Images/trash.svg'
 
 import tile1 from '@Images/tile-1.jpg'
@@ -110,7 +108,8 @@ const TitleTaskStyled = styled.h1`
 `
 
 const TaskItem = styled.div`
-  width: 70%;
+  width: 58%;
+  margin-left: 70px;
 
   display: flex;
   flex-direction: column;
@@ -300,15 +299,17 @@ const Home: NextPage = () => {
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleOnChange = (e: any) => setInputValue(e.target.value);
+ 
   const addTask = () => {
-    setTask([...tasks, inputValue]);
+   
+    if (inputValue) 
+      setTask([...tasks, inputValue]);
+    
     setInputValue('');
-
   }
 
   const removeTask = (e: any) => {
     const newTasks = tasks.filter(x => x !== e.target.getAttribute('data-task'))
-    console.log(newTasks)
     setTask(newTasks)
   };
 
@@ -330,9 +331,9 @@ const Home: NextPage = () => {
               <Image src={logo} quality={100} alt="Logo" />
             </LogoPosition>
             <PageButtonPosition>
-              <PageButton href="https://google.com">PAGE ONE</PageButton>
-              <PageButton href="https://google.com">PAGE TWO</PageButton>
-              <PageButton href="https://google.com">PAGE THREE</PageButton>
+              <PageButton href="">PAGE ONE</PageButton>
+              <PageButton href="">PAGE TWO</PageButton>
+              <PageButton href="">PAGE THREE</PageButton>
             </PageButtonPosition>
           </NavBar>
           <BannerTopItems>
