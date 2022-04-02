@@ -120,6 +120,7 @@ const TaskItem = styled.div`
     margin-left: 20px;
   }
 `
+
 const BannerTopItems = styled.div`
 
   display: flex;
@@ -200,14 +201,32 @@ const ButtonTaskStyled = styled(Button)`
 `
 
 const ButtonRemoveStyled = styled(Button)`
-  
   border: none;
   background-color: transparent;
   cursor: pointer;
 `
 
-const Checkbox = styled(Input)`
-  
+const Checkbox = styled.input`
+  content: url('./images/checkbox-off.svg');
+  display: block;
+  appearance: none;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  margin-top: 25px;
+
+  &:checked {
+    content: url('./images/checkbox-on.svg');
+  }
+
+  &:hover {
+    content: url('./images/checkbox-on.svg');
+  }
+`
+const ImageTrash = styled(Image)`
+ &:hover {
+    content: url('./images/trash-hover.svg');
+  }
 `
 
 const ButtonLabel = styled(Button)`
@@ -293,7 +312,6 @@ const Home: NextPage = () => {
     setTask(newTasks)
   };
 
-
   return (
     <>
       <Head>
@@ -349,10 +367,10 @@ const Home: NextPage = () => {
             <TaskItem>
                 {tasks.map((task, i) => ( 
                   <div key={task + i} style={{ display: 'flex'}}>
-                    <Image src={checkboxOff} quality={100} alt="check"/>
+                    <Checkbox type="checkbox" />
                     <TaskName>{ task }</TaskName>
                     <ButtonRemoveStyled type="button" data-task={task} onClick={removeTask}>
-                      <Image src={trash} quality={100} alt="trash"/>
+                      <ImageTrash src={trash} quality={100} alt="trash"/>
                     </ButtonRemoveStyled>
                   </div>
                   )
