@@ -302,7 +302,7 @@ const Home: NextPage = () => {
  
   const addTask = () => {
    
-    if (inputValue) 
+    if (inputValue && tasks.length < 3) 
       setTask([...tasks, inputValue]);
     
     setInputValue('');
